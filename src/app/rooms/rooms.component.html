@@ -1,0 +1,16 @@
+<p>rooms works!</p>
+<h1>Welcome to {{hotelName}}</h1>
+<!-- The above is interpolation, in rooms.component.ts, there is a hotelName: "Hilton Hotel" under export class -->
+
+<div [hidden]="hideRooms">
+    <div [innerText] = "numberOfRooms"></div>  
+</div>
+<!-- this is property binding -->
+
+{{ rooms?.availableRooms ?? 'No Rooms'}}
+
+<div *ngIf = "rooms.availableRooms > 0">
+    Rooms List
+</div>
+
+<button (click)="toggle()">Toggle</button>
