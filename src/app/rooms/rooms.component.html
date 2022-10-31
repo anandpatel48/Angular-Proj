@@ -2,12 +2,13 @@
 <h1>Welcome to {{hotelName}}</h1>
 <!-- The above is interpolation, in rooms.component.ts, there is a hotelName: "Hilton Hotel" under export class -->
 
-<div [hidden]="hideRooms">
-    <div [innerText] = "numberOfRooms"></div>  
+<div [hidden]="hideRooms"> 
+    <div [ngStyle]="{'color': rooms.availableRooms ? 'steelblue' : 'red'}"
+        [innerText]="numberOfRooms">
+    </div>
 </div>
 <!-- this is property binding -->
 
-{{ rooms?.availableRooms ?? 'No Rooms'}}
 
 <div *ngIf = "rooms.availableRooms > 0">
     Rooms List
@@ -21,7 +22,10 @@
             <th>Amenities</th>
             <th>Checkin Time</th>
         </tr>
-        <tr *ngFor="let room of roomList; let e=even; let o=odd; let i = index">
+        <tr 
+            [ngClass] = "e? 'even' : 'odd'" 
+            *ngFor="let room of roomList; let e=even; let o=odd; let i = index"
+        >
             <td>{{i}}</td>
             <td>{{e ? "Even" : "Odd"}}</td>
             <td>{{room.roomNumber}}</td>
