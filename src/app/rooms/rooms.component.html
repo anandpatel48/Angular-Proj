@@ -9,32 +9,15 @@
 </div>
 <!-- this is property binding -->
 
-
+<div *ngIf="selectedRoom">
+    {{selectedRoom | json }}
+</div>
 <div *ngIf = "rooms.availableRooms > 0">
-    Rooms List
-    <table>
-        <tr>
-            <th>Index</th>
-            <th>Even/Odd</th>
-            <th>Room Number</th>
-            <th>Room Type</th>
-            <th>Room Price</th>
-            <th>Amenities</th>
-            <th>Checkin Time</th>
-        </tr>
-        <tr 
-            [ngClass] = "e? 'even' : 'odd'" 
-            *ngFor="let room of roomList; let e=even; let o=odd; let i = index"
-        >
-            <td>{{i}}</td>
-            <td>{{e ? "Even" : "Odd"}}</td>
-            <td>{{room.roomNumber}}</td>
-            <td>{{room.roomType}}</td>
-            <td>{{room.price}}</td>
-            <td>{{room.amenities}}</td>
-            <td>{{room.checkinTime}}</td>
-        </tr>
-    </table>
+    <app-rooms-list [rooms]="roomList" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
+</div>
+
+<div>
+    <button (click)="addRoom()">Add Room</button>
 </div>
 
 <button (click)="toggle()">Toggle</button>
